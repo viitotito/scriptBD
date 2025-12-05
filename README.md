@@ -24,11 +24,6 @@ npm run reset-database
 ```
 ---
 5. Comando para realizar conversões de dado
-### Para exportar no formato CSV:
-```bash
-npm run export-csv 
-```
-### Para exportar no formato Json:
 ```bash
 npm run export-json 
 ```
