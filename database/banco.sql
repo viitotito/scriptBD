@@ -7,14 +7,14 @@ SET client_encoding = 'UTF8';
 
 \set ON_ERROR_STOP on
 
-DROP DATABASE IF EXISTS transportadora_bd;
+DROP DATABASE IF EXISTS transportadora_db;
 
-CREATE DATABASE transportadora_bd;
+CREATE DATABASE transportadora_db;
 \echo ' '
 \echo '--- Conectando com transportadora... ---'
 
 -- Conectando ao banco de dados recém-criado
-\connect transportadora_bd;
+\connect transportadora_db;
 
 \echo '******** BANCO CONECTADO ********'
 \echo ' '
