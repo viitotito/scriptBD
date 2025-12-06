@@ -27,3 +27,12 @@ npm run reset-database
 ```bash
 npm run export-json 
 ```
+## Utilizando MongoDB Atlas
+- Para utilizar o serviço em nuvem do MongoDB e conectar com o script, segue os seguintes passos:
+---
+1. Criar um cluster no Atlas
+2. Criar um usuário do banco (guarde os dados como nome e senha)
+3. Libere o IP em: Network Access > IP Whitelist > Add IP Address > Allow access from anywhere
+4. Pegar a conexão de string em: Database > Connect > Drivers e copie
+5. No arquivo import-json.js cole a string substituindo o name e password pelas que foram copiadas em outras etapas: 
+``` const client = new MongoClient("sua string de conexão") ```
