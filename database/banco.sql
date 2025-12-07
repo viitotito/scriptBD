@@ -56,15 +56,6 @@ CREATE TABLE IF NOT EXISTS mensagens_clientes (
   resumo          VARCHAR(255) NOT NULL
 );
 
--- Tabela de sensores_IOT
-CREATE TABLE IF NOT EXISTS sensores_IOT (
-  id              SERIAL       PRIMARY KEY,
-  veiculo_id      INT NOT NULL REFERENCES veiculos,
-  horarioRegistro TIMESTAMP    NOT NULL DEFAULT NOW(),
-  tipoDado        VARCHAR(100) NOT NULL,
-  valor           VARCHAR(255) NOT NULL
-);
-
 -- Tabela de veiculos
 CREATE TABLE IF NOT EXISTS veiculos (
   id              SERIAL       PRIMARY KEY,
@@ -75,6 +66,16 @@ CREATE TABLE IF NOT EXISTS veiculos (
   statusVeiculo   VARCHAR(50)  NOT NULL,
   dataCriacao     TIMESTAMP    NOT NULL DEFAULT NOW()     
 );
+
+-- Tabela de sensores_IOT
+CREATE TABLE IF NOT EXISTS sensores_IOT (
+  id              SERIAL       PRIMARY KEY,
+  veiculo_id      INT NOT NULL REFERENCES veiculos,
+  horarioRegistro TIMESTAMP    NOT NULL DEFAULT NOW(),
+  tipoDado        VARCHAR(100) NOT NULL,
+  valor           VARCHAR(255) NOT NULL
+);
+
 
 
 \echo ' '
