@@ -5,10 +5,11 @@ import { prompt } from "../utils/prompt.js";
 async function importarDados() {
   try {
     // Lê o arquivo JSON
-    const dbTable = await prompt('Digite o nome da tabela que deseja importar: ');
+    const dbTable = await prompt('Digite o nome da tabela (em json) que deseja importar: ');
     const data = JSON.parse(fs.readFileSync(`exports/${dbTable}.json`, "utf8"));
 
-    const db = mongoclient.db("clientes");
+    const dbName = await prompt('Digite o nome da sua DataBase (Nova ou existente): ');
+    const db = mongoclient.db(`${dbName}`);
 
     const dbCollection = await prompt('Digite o nome da Collection que deseja criar no mongo DB: ')
     const colecao = db.collection(`${dbCollection}`);
