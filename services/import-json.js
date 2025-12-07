@@ -1,16 +1,17 @@
 import {mongoclient} from '../database/mongo.js';
 import fs from "fs";
+import { prompt } from "../utils/prompt.js";
 
 async function importarDados() {
   try {
     // Lê o arquivo JSON
-    const data = JSON.parse(fs.readFileSync("exports/clientes.json", "utf8"));
-    // console.log(data)
-    await mongoclient.connect()
-    // console.log("Conexão feita!");
+    const dbTable = await prompt('Digite o nome da tabela que deseja importar: ');
+    const data = JSON.parse(fs.readFileSync(`exports/${dbTable}.json`, "utf8"));
 
     const db = mongoclient.db("clientes");
-    const colecao = db.collection("users");
+
+    const dbCollection = await prompt('Digite o nome da Collection que deseja criar no mongo DB: ')
+    const colecao = db.collection(`${dbCollection}`);
 
     const resultado = await colecao.insertMany(data);
 
@@ -20,10 +21,12 @@ async function importarDados() {
     await mongoclient.close();
   } catch (erro) {
     console.error("Erro ao importar:", erro);
+    console.log("============================");
+    console.log("Tente novamente ou CTRL + C para sair");
+    importarDados();
   }
 }
 
 if (process.argv[1].includes("import-json.js")) {
     importarDados();
 }
-
